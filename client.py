@@ -6,13 +6,11 @@ from openpyxl.utils import get_column_letter
 from datetime import datetime
 from dateutil import parser as dateparser
 
-# CLI argümanları
 parser = argparse.ArgumentParser(description="Send vehicle data to server and write to Excel.")
 parser.add_argument("-k", "--keys", nargs="*", default=[], help="Fields to include")
 parser.add_argument("-c", "--colored", action="store_true", default=True, help="Enable colored rows based on HU")
 args = parser.parse_args()
 
-# CSV'yi sunucuya gönder
 with open("vehicles.csv", "rb") as file:
     response = requests.post("http://127.0.0.1:5000/upload-csv", files={"file": file})
 
